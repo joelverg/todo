@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>Todo List</h2>
+    <form (submit)="addTodo()">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Add Todo" [(ngModel)]="newTodo" name="todo">
+            <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+    </form>
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let todo of todos">
+            {{ todo }}
+            <button class="btn btn-danger btn-sm float-end" (click)="deleteTodo(todo)">Delete</button>
+        </li>
+    </ul>
+</div>
