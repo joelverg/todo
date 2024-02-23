@@ -8,26 +8,20 @@
     </form>
     <ul class="list-group">
         <li class="list-group-item" *ngFor="let todo of todoList | async">
-
-            <div *ngIf="isEditing(todo._id)">
-                <input type="text" class="form-control inline-container" [(ngModel)]="editedTask"
-                    value="{{ todo.task }}">
-
-                <button class="btn btn-success btn-sm inline-button" (click)="saveEdit(todo)">Save</button>
-            </div>
-
             <div *ngIf="!isEditing(todo._id)" class="d-flex justify-content-between align-items-center">
-
                 <div>
                     {{ todo.task }}
                 </div>
-
                 <div class="float-end">
                     <button class="btn btn-primary btn-sm" (click)="editTodo(todo)">Edit</button>
-
                     <span style="margin-left: 5px;"></span>
                     <button class="btn btn-danger btn-sm" (click)="deleteTodo(todo)">Delete</button>
                 </div>
+            </div>
+            <div *ngIf="isEditing(todo._id)">
+                <input type="text" class="form-control inline-container" [(ngModel)]="editedTask"
+                    value="{{ todo.task }}">
+                <button class="btn btn-success btn-sm inline-button" (click)="saveEdit(todo)">Save</button>
             </div>
         </li>
     </ul>

@@ -13,7 +13,6 @@ export class TodoComponent implements OnInit {
   todos: string[] = [];
   todoList: Observable<Todo[]> | undefined;
   editedTask = '';
-
   editingMap: Map<string, boolean> = new Map();
 
   constructor(private todoService: TodoService) {}
@@ -24,29 +23,15 @@ export class TodoComponent implements OnInit {
 
   addTodo() {
     this.todoService.addTodo(this.newTodo).subscribe((data) => {
-      console.log(data, 'data');
-
-      console.log('added');
       this.newTodo = '';
-
       this.todoList = this.todoService.getTodoList();
     });
   }
 
   deleteTodo(todo: Todo) {
-    this.todoService.deleteTodo(todo).subscribe({
-      next: (deletedTodo: Todo) => {
-        console.log('Deleted successfully:', deletedTodo);
-        this.todoList = this.getTodoList();
-      },
-      error: (error: any) => {
-        console.error('Error deleting todo:', error);
-      },
+    this.todoService.deleteTodo(todo).subscribe(() => {
+      this.todoList = this.getTodoList();
     });
-  }
-
-  updateTodo(id: string) {
-    // this.todos = this.todos.filter((item) => item !== todo);
   }
 
   getTodoList(): Observable<Todo[]> {
