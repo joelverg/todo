@@ -1,0 +1,9 @@
+.inline-container {
+    display: inline-block;
+    width: calc(100% - 85px);
+    margin-right: 5px;
+}
+
+.inline-button {
+    display: inline-block;
+}
